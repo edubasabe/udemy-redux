@@ -11,6 +11,7 @@ const initialState = {
 // types
 const GET_POKEMONS = 'GET_POKEMONS';
 const NEXT_POKEMONS = 'NEXT_POKEMONS';
+const PREVIOUS_POKEMONS = 'PREVIOUS_POKEMONS';
 // reducer
 export default function pokeReducer(state = initialState, action) {
   switch (action.type) {
@@ -20,6 +21,11 @@ export default function pokeReducer(state = initialState, action) {
         ...action.payload
       }
     case NEXT_POKEMONS:
+      return {
+        ...state,
+        ...action.payload
+      }
+    case PREVIOUS_POKEMONS:
       return {
         ...state,
         ...action.payload
@@ -50,6 +56,19 @@ export const nextPokemons = () => async (dispatch, getState) => {
   const { next } = getState().pokemones;
   try {
     const { data } = await axios.get(next);
+    dispatch({
+      type: NEXT_POKEMONS,
+      payload: data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const previousPokemons = () => async (dispatch, getState) => {
+  const { previous } = getState().pokemones;
+  try {
+    const { data } = await axios.get(previous);
     dispatch({
       type: NEXT_POKEMONS,
       payload: data,
