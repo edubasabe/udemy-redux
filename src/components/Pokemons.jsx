@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getPokemons, nextPokemons } from '../redux/pokeDucks'
 const Pokemons = () => {
   const dispatch = useDispatch();
-  const pokes = useSelector(state => state.pokemones.pokes);
+  const pokes = useSelector(state => state.pokemones.results);
   console.log(pokes);
   return (
     <div>
