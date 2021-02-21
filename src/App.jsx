@@ -1,9 +1,13 @@
-import './App.css';
+import Pokemons from './components/Pokemons';
+import { Provider } from 'react-redux'
+import generateStore from './redux/store'
 
 function App() {
+  const store = generateStore();
   return (
-    <div className="App">
-    </div>
+    <Provider store={store}>
+      <Pokemons />
+    </Provider>
   );
 }
 
